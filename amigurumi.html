@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zera'nın Amigurumi Takibi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Quicksand:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: transparent;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #2d5a3d;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            padding: 30px;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        h1 {
+            font-family: 'Brush Script MT', cursive;
+            text-align: center;
+            color: #2d5a3d;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 100;
+            letter-spacing: 0px;
+        }
+
+        .row-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: clamp(25px, 5vw, 40px);
+            gap: clamp(15px, 4vw, 25px);
+            flex-wrap: wrap;
+        }
+
+        .row-selector button {
+            background: linear-gradient(135deg, #6a9b59 0%, #5d8a4e 100%);
+            border: none;
+            color: #e8f5e8;
+            width: clamp(45px, 10vw, 55px);
+            height: clamp(45px, 10vw, 55px);
+            border-radius: 50%;
+            font-size: clamp(18px, 4vw, 24px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(106, 155, 89, 0.4);
+            border: 2px solid rgba(200, 230, 201, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row-selector button:hover {
+            background: linear-gradient(135deg, #5d8a4e 0%, #4f7342 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 155, 89, 0.5);
+        }
+
+        .row-selector button:active {
+            transform: translateY(-1px);
+        }
+
+        .row-number {
+            background: linear-gradient(135deg, #4a6b4a 0%, #3d5a3d 100%);
+            border: 3px solid #6a9b59;
+            border-radius: 15px;
+            padding: clamp(12px, 3vw, 18px) clamp(20px, 5vw, 30px);
+            font-size: clamp(20px, 5vw, 32px);
+            font-weight: 600;
+            color: #c8e6c9;
+            min-width: clamp(100px, 20vw, 140px);
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(106, 155, 89, 0.3);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .controls-container {
+            background: rgba(26, 47, 26, 0.7);
+            border-radius: 15px;
+            padding: clamp(20px, 5vw, 35px);
+            border: 2px solid rgba(106, 155, 89, 0.3);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-group {
+            margin-bottom: clamp(20px, 4vw, 30px);
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            display: block;
+            margin-bottom: clamp(10px, 2vw, 15px);
+            font-weight: 500;
+            color: #c8e6c9;
+            font-size: clamp(16px, 3vw, 20px);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .number-select {
+            width: 100%;
+            padding: clamp(12px, 3vw, 18px) clamp(16px, 4vw, 24px);
+            border: 2px solid rgba(106, 155, 89, 0.4);
+            border-radius: 12px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 500;
+            color: #2d5a3d;
+            background: #e8f5e8;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232d5a3d'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+
+        .number-select:focus {
+            outline: none;
+            border-color: #6a9b59;
+            box-shadow: 0 0 0 3px rgba(106, 155, 89, 0.3);
+            transform: translateY(-2px);
+            background: #f0f8f0;
+        }
+
+        .number-select:hover {
+            border-color: #6a9b59;
+            box-shadow: 0 6px 20px rgba(106, 155, 89, 0.2);
+            background: #f0f8f0;
+        }
+
+        .row-info {
+            text-align: center;
+            margin-bottom: clamp(15px, 3vw, 25px);
+            padding: clamp(12px, 3vw, 18px);
+            background: rgba(106, 155, 89, 0.3);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .row-info:hover {
+            background: rgba(106, 155, 89, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(106, 155, 89, 0.3);
+        }
+
+        .row-info.completed {
+            background: rgba(76, 175, 80, 0.3);
+        }
+
+        .row-info.completed:hover {
+            background: rgba(76, 175, 80, 0.4);
+        }
+
+        .row-info h3 {
+            color: #c8e6c9;
+            font-size: clamp(18px, 4vw, 24px);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .collapsible-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 16px);
+            background: rgba(106, 155, 89, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: clamp(10px, 2vw, 15px);
+            position: relative;
+        }
+
+        .collapsible-header:hover {
+            background: rgba(106, 155, 89, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .collapsible-header .control-label {
+            font-size: clamp(14px, 3vw, 18px);
+            margin-bottom: 0;
+        }
+
+        .collapse-icon {
+            position: absolute;
+            right: clamp(12px, 3vw, 16px);
+            font-size: clamp(16px, 3vw, 20px);
+            color: #c8e6c9;
+            transition: transform 0.3s ease;
+        }
+
+        .collapse-icon.rotated {
+            transform: rotate(-90deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: clamp(10px, 2vw, 15px);
+        }
+
+        .collapsible-content.open {
+            max-height: 400px;
+            padding: clamp(15px, 3vw, 20px);
+        }
+
+        .start-input-group {
+            margin-bottom: clamp(15px, 3vw, 20px);
+        }
+
+        .start-input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .start-label {
+            display: block;
+            margin-bottom: clamp(8px, 2vw, 12px);
+            font-weight: 500;
+            color: #a8c8a8;
+            font-size: clamp(14px, 3vw, 18px);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .start-select {
+            font-size: clamp(14px, 3vw, 18px);
+            padding: clamp(10px, 2vw, 14px) clamp(12px, 3vw, 18px);
+        }
+
+        .checkmark {
+            position: absolute;
+            top: clamp(8px, 2vw, 12px);
+            right: clamp(8px, 2vw, 12px);
+            width: clamp(18px, 4vw, 24px);
+            height: clamp(18px, 4vw, 24px);
+            background: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(12px, 3vw, 16px);
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+        }
+
+        .checkmark.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkmark::before {
+            content: "✓";
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 0;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .row-selector {
+                gap: 15px;
+            }
+
+            .controls-container {
+                padding: 20px;
+            }
+
+            .number-select {
+                padding: 14px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 0;
+            }
+
+            .row-selector {
+                gap: 12px;
+            }
+
+            .controls-container {
+                padding: 15px;
+            }
+
+            .control-group {
+                margin-bottom: 18px;
+            }
+
+            .number-select {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1000px;
+                padding: 50px;
+            }
+
+            .controls-container {
+                padding: 40px;
+            }
+
+            .control-group {
+                margin-bottom: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zera'nın Amigurumi Takibi ✨</h1>
+        
+        <div class="row-selector">
+            <button onclick="changeRow(-1)">◀</button>
+            <div class="row-number" id="rowNumber">1</div>
+            <button onclick="changeRow(1)">▶</button>
+        </div>
+
+        <div class="controls-container">
+            <div class="row-info" id="rowInfo" onclick="toggleRowCompletion()">
+                <h3 id="rowTitle">1. Sıra</h3>
+                <div class="checkmark" id="checkmark"></div>
+            </div>
+
+            <div class="control-group">
+                <div class="collapsible-header" onclick="toggleStartSection()">
+                    <label class="control-label">Başlangıç</label>
+                    <span class="collapse-icon" id="collapseIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="startSection">
+                    <div class="start-input-group">
+                        <label class="start-label">Sık İğne</label>
+                        <select class="number-select start-select" id="startSikIgne" onchange="saveCurrentRowData()">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="start-input-group">
+                        <label class="start-label">Eksiltme</label>
+                        <select class="number-select start-select" id="startEksiltme" onchange="saveCurrentRowData()">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="start-input-group">
+                        <label class="start-label">Arttırma</label>
+                        <select class="number-select start-select" id="startArttirma" onchange="saveCurrentRowData()">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Sık İğne</label>
+                <select class="number-select" id="sikIgne" onchange="saveCurrentRowData()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Eksiltme</label>
+                <select class="number-select" id="eksiltme" onchange="saveCurrentRowData()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Arttırma</label>
+                <select class="number-select" id="arttirma" onchange="saveCurrentRowData()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Veri saklama objesi
+        let rowData = {};
+        let currentRow = 1;
+        let completedRows = {};
+        let startSectionOpen = false;
+
+        // Sayfa yüklendiğinde başlangıç değerlerini ayarla
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRowData();
+            updateRowCompletionDisplay();
+            
+            // Select elementlerine 0-100 arası option ekleme
+            addOptionsToSelect('sikIgne', 0, 999);
+            addOptionsToSelect('eksiltme', 0, 999);
+            addOptionsToSelect('arttirma', 0, 999);
+            addOptionsToSelect('startSikIgne', 0, 999);
+            addOptionsToSelect('startEksiltme', 0, 999);
+            addOptionsToSelect('startArttirma', 0, 999);
+        });
+
+        function addOptionsToSelect(selectId, min, max) {
+            const select = document.getElementById(selectId);
+            select.innerHTML = ''; // Mevcut option'ları temizle
+            
+            for (let i = min; i <= max; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                select.appendChild(option);
+            }
+        }
+
+        function changeRow(direction) {
+            // Mevcut sıraya ait verileri kaydet
+            saveCurrentRowData();
+            
+            // Sıra numarasını değiştir
+            currentRow += direction;
+            if (currentRow < 1) {
+                currentRow = 1;
+            }
+            
+            // Arayüzü güncelle
+            updateDisplay();
+            
+            // Yeni sıranın verilerini yükle
+            loadRowData();
+            
+            // Tamamlama durumunu güncelle
+            updateRowCompletionDisplay();
+        }
+
+        function saveCurrentRowData() {
+            rowData[currentRow] = {
+                sikIgne: document.getElementById('sikIgne').value,
+                eksiltme: document.getElementById('eksiltme').value,
+                arttirma: document.getElementById('arttirma').value,
+                startSikIgne: document.getElementById('startSikIgne').value,
+                startEksiltme: document.getElementById('startEksiltme').value,
+                startArttirma: document.getElementById('startArttirma').value
+            };
+        }
+
+        function loadRowData() {
+            if (rowData[currentRow]) {
+                // Mevcut veri varsa yükle
+                document.getElementById('sikIgne').value = rowData[currentRow].sikIgne;
+                document.getElementById('eksiltme').value = rowData[currentRow].eksiltme;
+                document.getElementById('arttirma').value = rowData[currentRow].arttirma;
+                document.getElementById('startSikIgne').value = rowData[currentRow].startSikIgne || 0;
+                document.getElementById('startEksiltme').value = rowData[currentRow].startEksiltme || 0;
+                document.getElementById('startArttirma').value = rowData[currentRow].startArttirma || 0;
+            } else {
+                // Yeni sıra, varsayılan değerleri ayarla
+                document.getElementById('sikIgne').value = 0;
+                document.getElementById('eksiltme').value = 0;
+                document.getElementById('arttirma').value = 0;
+                document.getElementById('startSikIgne').value = 0;
+                document.getElementById('startEksiltme').value = 0;
+                document.getElementById('startArttirma').value = 0;
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('rowNumber').textContent = currentRow;
+            document.getElementById('rowTitle').textContent = currentRow + '. Sıra';
+        }
+
+        function toggleRowCompletion() {
+            const isCompleted = completedRows[currentRow] || false;
+            completedRows[currentRow] = !isCompleted;
+            updateRowCompletionDisplay();
+        }
+
+        function updateRowCompletionDisplay() {
+            const rowInfo = document.getElementById('rowInfo');
+            const checkmark = document.getElementById('checkmark');
+            
+            if (completedRows[currentRow]) {
+                rowInfo.classList.add('completed');
+                checkmark.classList.add('show');
+            } else {
+                rowInfo.classList.remove('completed');
+                checkmark.classList.remove('show');
+            }
+        }
+
+        function toggleStartSection() {
+            const startSection = document.getElementById('startSection');
+            const collapseIcon = document.getElementById('collapseIcon');
+            
+            startSectionOpen = !startSectionOpen;
+            
+            if (startSectionOpen) {
+                startSection.classList.add('open');
+                collapseIcon.classList.add('rotated');
+            } else {
+                startSection.classList.remove('open');
+                collapseIcon.classList.remove('rotated');
+            }
+        }
+
+        // Sayfa kapatılırken son verileri kaydet
+        window.addEventListener('beforeunload', function() {
+            saveCurrentRowData();
+        });
+    </script>
+</body>
+</html>
